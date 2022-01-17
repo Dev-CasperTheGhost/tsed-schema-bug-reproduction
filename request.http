@@ -1,0 +1,48 @@
+// will not work, there's a nullable value within an array
+
+POST http://localhost:8083/rest/hello-world HTTP/1.1
+content-type: application/json
+
+{
+  "type":"ARREST_REPORT","citizenId":"ckygxvp6t0551cqo6xt9zxcpw","citizenName":"john doe","violations":[{"penalCodeId":"ckygy7p7b0159jmo63x9xjdv7","bail":null,"jailTime":501,"fine":null}],"postal":"42042","notes":""
+}
+
+###
+
+// will not work, there's a nullable value within an object/array
+
+POST http://localhost:8083/rest/hello-world HTTP/1.1
+content-type: application/json
+
+{
+  "other": null,
+  "deep": {
+    "within": null
+  }
+}
+
+
+###
+
+// will work since there's not an object with nullable values
+
+POST http://localhost:8083/rest/hello-world HTTP/1.1
+content-type: application/json
+
+{
+  "other": null
+}
+
+###
+
+// will also work
+
+POST http://localhost:8083/rest/hello-world HTTP/1.1
+content-type: application/json
+
+{
+  "other": null,
+  "hello":  {
+    "world": 0
+  }
+}
